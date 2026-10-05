@@ -17,6 +17,7 @@ export function ipToUint(ip: string): number {
   }
   return ((octets[0] << 24) | (octets[1] << 16) | (octets[2] << 8) | octets[3]) >>> 0;
 }
+export const ipToInt = ipToUint;
 
 // Converts 32-bit unsigned number to dotted decimal IPv4
 export function uintToIp(uint: number): string {
@@ -27,6 +28,7 @@ export function uintToIp(uint: number): string {
     uint & 255
   ].join('.');
 }
+export const intToIp = uintToIp;
 
 // Convert CIDR prefix (0-32) to 32-bit uint mask
 export function cidrToUintMask(cidr: number): number {
