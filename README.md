@@ -266,4 +266,4 @@ Contributions, issues, and feature suggestions are welcome!
 
 ## 📜 License
 
-This project is open-source software licensed under the [MIT License](LICENSE).
+This project is open-source software licensed under the [Apache-2.0 license](LICENSE).
