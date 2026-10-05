@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { Server, HardDrive, Zap, Flame, Plus, Trash2, Download, Layers, ShieldCheck } from 'lucide-react';
+import { exportRackToPdf } from '../utils/pdfExport';
+import { Server, HardDrive, Zap, Flame, Plus, Trash2, Download, Layers, ShieldCheck, FileText } from 'lucide-react';
 
 export interface RackUnitItem {
   id: string;
@@ -89,7 +90,7 @@ export const RackPlanner: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex flex-wrap items-center gap-2">
             <select
               value={totalRackU}
               onChange={(e) => setTotalRackU(parseInt(e.target.value, 10))}
@@ -100,6 +101,29 @@ export const RackPlanner: React.FC = () => {
               <option value={24}>24U Half Rack</option>
               <option value={12}>12U Wall Mount</option>
             </select>
+
+            <button
+              onClick={() => {
+                exportRackToPdf({
+                  rackName,
+                  totalU: totalRackU,
+                  items,
+                  stats: {
+                    totalWatts,
+                    totalAmps208V,
+                    totalBtu,
+                    totalWeightKg,
+                    occupiedU,
+                    utilizationPercent
+                  }
+                });
+              }}
+              className="px-3 py-2 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold flex items-center space-x-1.5 transition-colors shadow-xs"
+              title="Export rack elevation and power schedule to PDF"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              <span>Export PDF</span>
+            </button>
           </div>
         </div>
 
